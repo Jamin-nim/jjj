@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jieun Lee</title>
+  
+  <link href="http://kimjisun.net/assets/css/fonts.css" rel="stylesheet">
+  <link href="./style.css" rel="stylesheet">
+  
+  <style>
+    .lang-ko {
+      display: none;
+    }
+
+    .lang-en:hover {
+      display: none;
+    }
+
+    .lang-en:hover + .lang-ko {
+      display: block;
+    }
+
+    .project-content figure:hover ~ .lang-en {
+      display: none;
+    }
+
+    .project-content figure:hover ~ .lang-ko {
+      display: block;
+    }
+
+    .section-content p {
+      margin-bottom: 1em;
+    }
+
+    details:not([open]) > summary + * {
+      display: none;
+    }
+
+    details[open] > summary + * {
+      display: block;
+    }
+
+    a:focus, a:active, #title:focus, #title:active, summary:focus, summary:active {
+      text-decoration: underline;
+    }
+
+    a, #title, summary {
+      text-decoration: none;
+    }
+
+    #random-images {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 500px;
+      overflow: hidden;
+    }
+
+    #random-images img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 0px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+      transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+      opacity: 0.4;
+      filter: blur(20px);
+    }
+
+    #random-images img:hover {
+      opacity: 1;
+      transform: scale(1.05);
+      filter: blur(0);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="title">jieun Lee</h1>
+  </header>
+
+  <div class="content">
+    <details id="about">
+      <summary>About</summary>
+      <div class="section-content">
+        <p class="lang-en">I am deeply interested in the videos that are most commonly encountered by this generation, not just contemporary art. Among them, I focus on the way stories are told through video and the moments in between reality, paying attention to the fleeting moments. Through this observation, I research how these images are being consumed by us, and continue my work by directly engaging with them. At first glance, these may seem like ordinary stories, but I focus on a perspective that cannot be merely the same, emphasizing a more complex and multifaceted view.</p>
+        <p class="lang-ko">동시대 예술만이 아닌 지금 세대에서 가장 흔하게 접하고 있는 영상에 관심이 깊다. 그중 영상이 이야기되는 방식과 현실 사이, 찰나에 주목한다. 이러한 관찰과 나아가 그것들이 우리에게 소비되고 있는 이미지를 연구하고, 직접 마주하며 작업을 이어 나가고 있다. 언뜻 보면 흔한 이야기들 같지만, 같을 수 없는 입체적인 시야를 중점으로 삼고 있다.</p>
+        <a href="mailto:jaminyi0129@naver.com">Email jieun Lee</a>
+      </div>
+    </details>
+
+    <details id="projects">
+      <summary>Projects</summary>
+      <div class="project">
+        <details>
+          <summary>wander, 2024.</summary>
+          <div class="project-content">
+            <figure>
+              <!-- Wrap the image with a link to the project -->
+              <a href="https://youtu.be/6a0TOq55H9g?si=kWl7AiMY0_HlKF_u" target="_blank">
+                <img src="이지은 3.jpg" alt="wander, 2024.">
+              </a>
+            </figure>
+            <p class="lang-en">The increase in international migration is one of the key functions of nations in the 21st century. Through movement and intercultural exchanges, heterogeneous cultures meet, giving rise to cultural hybridity. The artist speaks about the border-like existence they experienced through their Vietnamese mother. This presence visualizes the gaps where these border-crossing beings reside, while also clashing their perspectives. The work involves breaking down boundaries and rethinking them through the stories that begin with immigrants' narratives of their hometowns, as shared in interviews.</p>
+            <p class="lang-ko">국제 이주의 증가는 21세기 국가의 중요한 기능 중 하나이다. 이동과 인종 간의 교류로 이질적 문화들이 만나 문화 혼종성이 발생하는데, 작가는 베트남인 어머니를 두면서 경험한 경계적 존재들에 대해서 이야기한다. 그 모습은 경계적 존재들이 머물러있는 틈을 가시화하면서 그들의 입장을 충돌시킨다. 인터뷰한 이주민에게 고향으로 시작된 이야기들을 통해 경계를 허물고 그것들을 재사유하는 작업이다.</p>
+            <ul>
+              <li><a href="https://youtu.be/6a0TOq55H9g?si=kWl7AiMY0_HlKF_u" target="_blank">wander, 2024.</a></li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </details>
+  </div>
+
+  <div id="random-images">
+    <div id="image-container"></div>
+  </div>
+
+  <script>
+    const images = [
+      '1.JPG', '2.jpeg', '6.jpeg', '이지은 4.jpg', '5.jpeg', '4.jpeg'
+    ];
+
+    function displayRandomImage() {
+      const container = document.getElementById('image-container');
+      const randomIndex = Math.floor(Math.random() * images.length);
+      const imageSrc = images[randomIndex];
+
+      const imgElement = document.createElement('img');
+      imgElement.src = imageSrc;
+      imgElement.alt = 'Random Image';
+
+      container.innerHTML = '';
+      container.appendChild(imgElement);
+    }
+
+    window.onload = function () {
+      const randomImagesDiv = document.getElementById('random-images');
+      randomImagesDiv.style.display = 'block';
+      displayRandomImage();
+    };
+
+    document.getElementById('title').addEventListener('click', function () {
+      const randomImagesDiv = document.getElementById('random-images');
+      const aboutDetails = document.getElementById('about');
+      const projectsDetails = document.getElementById('projects');
+
+      aboutDetails.removeAttribute('open');
+      projectsDetails.removeAttribute('open');
+      randomImagesDiv.style.display = 'block';
+      displayRandomImage();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    const aboutDetails = document.getElementById('about');
+    const projectsDetails = document.getElementById('projects');
+
+    aboutDetails.addEventListener('click', function () {
+      const randomImagesDiv = document.getElementById('random-images');
+      randomImagesDiv.style.display = 'none';
+      projectsDetails.removeAttribute('open');
+    });
+
+    projectsDetails.addEventListener('click', function () {
+      const randomImagesDiv = document.getElementById('random-images');
+      randomImagesDiv.style.display = 'none';
+      aboutDetails.removeAttribute('open');
+    });
+  </script>
+</body>
+</html>
